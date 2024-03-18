@@ -1,0 +1,72 @@
+var _excluded = ["children", "dismissible", "dismissAltText", "onDismiss", "show", "variant"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { Close } from '../../icons';
+import Icon from '../Icon';
+import IconButton from '../IconButton';
+export var PAGE_BANNER_DISMISS_ALT_TEXT = 'Dismiss';
+export var VARIANTS = {
+  light: 'light',
+  dark: 'dark',
+  warning: 'warning',
+  accentA: 'accentA',
+  accentB: 'accentB'
+};
+function PageBanner(_ref) {
+  var children = _ref.children,
+    dismissible = _ref.dismissible,
+    dismissAltText = _ref.dismissAltText,
+    onDismiss = _ref.onDismiss,
+    show = _ref.show,
+    variant = _ref.variant,
+    rest = _objectWithoutProperties(_ref, _excluded);
+  if (!show) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement("div", _extends({
+    className: classNames('pgn__pageBanner-component', "pgn__pageBanner__".concat(variant)),
+    role: "alert",
+    "aria-live": "polite",
+    "aria-atomic": "true"
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    className: "pgn__pageBanner-content"
+  }, children), dismissible && /*#__PURE__*/React.createElement("span", {
+    className: "pgn__pageBanner-dismissButtonContainer"
+  }, /*#__PURE__*/React.createElement(IconButton, {
+    onClick: onDismiss,
+    iconAs: Icon,
+    alt: dismissAltText,
+    src: Close,
+    size: "inline",
+    invertColors: variant === 'dark',
+    variant: variant === 'dark' ? 'dark' : 'black'
+  })));
+}
+PageBanner.propTypes = {
+  /** An element rendered inside the `Page Banner`. */
+  children: PropTypes.node,
+  /** Boolean used to control whether `Page Banner` is dismissible. */
+  dismissible: PropTypes.bool,
+  /** An element to be set as the dismiss button's alt text (preferably a translated string). */
+  dismissAltText: PropTypes.node,
+  /** A function to be called on dismiss of the `Page Banner`. */
+  onDismiss: PropTypes.func,
+  /** Boolean used to control whether the Page Banner shows. */
+  show: PropTypes.bool,
+  /** A string designating which color variant of the `Page Banner` to display */
+  variant: PropTypes.oneOf([VARIANTS.light, VARIANTS.dark, VARIANTS.warning, VARIANTS.accentA, VARIANTS.accentB])
+};
+PageBanner.defaultProps = {
+  children: undefined,
+  dismissible: false,
+  dismissAltText: PAGE_BANNER_DISMISS_ALT_TEXT,
+  onDismiss: function onDismiss() {},
+  show: true,
+  variant: VARIANTS.accentA
+};
+export default PageBanner;
+//# sourceMappingURL=index.js.map
