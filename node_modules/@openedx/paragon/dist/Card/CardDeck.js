@@ -1,0 +1,84 @@
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import React, { Children, useMemo } from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import BaseCardDeck from 'react-bootstrap/CardDeck';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useOverflowScrollItems } from '../OverflowScroll';
+var CardDeck = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
+  var className = _ref.className,
+    children = _ref.children,
+    columnSizes = _ref.columnSizes,
+    hasInteractiveChildren = _ref.hasInteractiveChildren,
+    canScrollHorizontal = _ref.canScrollHorizontal,
+    hasOverflowScrollItems = _ref.hasOverflowScrollItems,
+    hasEqualColumnHeights = _ref.hasEqualColumnHeights;
+  var cards = useMemo(function () {
+    return Children.map(children, function (card) {
+      return /*#__PURE__*/React.createElement(Col, _extends({}, columnSizes, {
+        className: classNames('pgn__card-deck__card-item', {
+          'pgn__card__disable-equal-column-heights': !hasEqualColumnHeights
+        })
+      }), card);
+    });
+  }, [children, columnSizes, hasEqualColumnHeights]);
+  var overflowCardDeckItems = useOverflowScrollItems(cards);
+  var cardDeckChildren = useMemo(function () {
+    if (hasOverflowScrollItems) {
+      return overflowCardDeckItems;
+    }
+    return cards;
+  }, [hasOverflowScrollItems, overflowCardDeckItems, cards]);
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames('pgn__card-deck', {
+      'pgn__card-deck-has-horizontal-scroll': canScrollHorizontal
+    }, className)
+  }, /*#__PURE__*/React.createElement(Row, {
+    className: "pgn__card-deck-row",
+    tabIndex: hasInteractiveChildren ? -1 : 0,
+    ref: ref
+  }, cardDeckChildren));
+});
+CardDeck.propTypes = {
+  /** The class name for the CardDeck component */
+  className: PropTypes.string,
+  /** The Card components to organize */
+  children: PropTypes.node.isRequired,
+  /**
+   * An object containing the desired column size at each breakpoint, following a similar
+   * props API as ``react-bootstrap/Col``
+   */
+  columnSizes: PropTypes.shape({
+    xs: PropTypes.number,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number,
+    xl: PropTypes.number
+  }),
+  /** Whether the child `Card` components are interactive/focusable. If not, a `tabindex="0"` is
+   * added to be a11y-compliant */
+  hasInteractiveChildren: PropTypes.bool,
+  /** Whether the `CardDeck` supports horizontal scrolling when there are overflow children */
+  canScrollHorizontal: PropTypes.bool,
+  /** Whether the children of CardDeck should be processed by `useOverflowScrollItems` to give
+   * each child a known/stable CSS classname */
+  hasOverflowScrollItems: PropTypes.bool,
+  /** Whether to disable the default equal height cards */
+  hasEqualColumnHeights: PropTypes.bool
+};
+CardDeck.defaultProps = {
+  className: undefined,
+  columnSizes: {
+    sm: 12,
+    lg: 6,
+    xl: 4
+  },
+  hasInteractiveChildren: false,
+  canScrollHorizontal: true,
+  hasOverflowScrollItems: false,
+  hasEqualColumnHeights: true
+};
+CardDeck.Deprecated = BaseCardDeck;
+export default CardDeck;
+//# sourceMappingURL=CardDeck.js.map

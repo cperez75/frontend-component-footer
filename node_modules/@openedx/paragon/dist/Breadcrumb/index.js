@@ -1,0 +1,88 @@
+var _excluded = ["links", "activeLabel", "spacer", "clickHandler", "variant", "isMobile", "ariaLabel", "linkAs"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import BreadcrumbLink from './BreadcrumbLink';
+import { ChevronRight } from '../../icons';
+import Icon from '../Icon';
+function Breadcrumb(_ref) {
+  var links = _ref.links,
+    activeLabel = _ref.activeLabel,
+    spacer = _ref.spacer,
+    clickHandler = _ref.clickHandler,
+    variant = _ref.variant,
+    isMobile = _ref.isMobile,
+    ariaLabel = _ref.ariaLabel,
+    linkAs = _ref.linkAs,
+    props = _objectWithoutProperties(_ref, _excluded);
+  var linkCount = links.length;
+  var displayLinks = isMobile ? [links[linkCount - 1]] : links;
+  return /*#__PURE__*/React.createElement("nav", _extends({
+    "aria-label": ariaLabel,
+    className: classNames('pgn__breadcrumb', "pgn__breadcrumb-".concat(variant))
+  }, props), /*#__PURE__*/React.createElement("ol", {
+    className: classNames('list-inline', {
+      'is-mobile': isMobile
+    })
+  }, displayLinks.map(function (link, i) {
+    return /*#__PURE__*/React.createElement(React.Fragment, {
+      key: link.label
+    }, /*#__PURE__*/React.createElement("li", {
+      className: classNames('list-inline-item')
+    }, /*#__PURE__*/React.createElement(BreadcrumbLink, {
+      as: linkAs,
+      clickHandler: clickHandler,
+      linkProps: link
+    })), (activeLabel || i + 1 < linkCount) && /*#__PURE__*/React.createElement("li", {
+      className: "list-inline-item",
+      role: "presentation"
+    }, spacer || /*#__PURE__*/React.createElement(Icon, {
+      src: ChevronRight,
+      id: "spacer-".concat(i)
+    })));
+  }), !isMobile && activeLabel && /*#__PURE__*/React.createElement("li", {
+    className: "list-inline-item active",
+    key: "active",
+    "aria-current": "page"
+  }, activeLabel)));
+}
+Breadcrumb.propTypes = {
+  /** An array of objects describing links to be rendered. The contents of an object depend on the value of `linkAs`
+   * prop as these objects will get passed down as props to the underlying component defined by `linkAs` prop.
+   */
+  links: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string
+  })).isRequired,
+  /** allows to add a label that is not a link to the end of the breadcrumb. */
+  activeLabel: PropTypes.string,
+  /** label of the element */
+  ariaLabel: PropTypes.string,
+  /** allows to add a custom element between the breadcrumb items.
+   * Defaults to `>` rendered using the `Icon` component. */
+  spacer: PropTypes.element,
+  /** allows to add a custom function to be called `onClick` of a breadcrumb link.
+   * The use case for this is for adding custom analytics to the component. */
+  clickHandler: PropTypes.func,
+  /** The `Breadcrumbs` style variant to use. */
+  variant: PropTypes.oneOf(['light', 'dark']),
+  /** The `Breadcrumbs` mobile variant view. */
+  isMobile: PropTypes.bool,
+  /** Specifies the base element to use when rendering links, you should generally use either plain 'a' or
+   * [react-router's Link](https://reactrouter.com/en/main/components/link).
+   */
+  linkAs: PropTypes.elementType
+};
+Breadcrumb.defaultProps = {
+  activeLabel: undefined,
+  ariaLabel: 'breadcrumb',
+  spacer: undefined,
+  clickHandler: undefined,
+  variant: 'light',
+  isMobile: false,
+  linkAs: 'a'
+};
+export default Breadcrumb;
+//# sourceMappingURL=index.js.map

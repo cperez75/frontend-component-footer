@@ -49,17 +49,11 @@ class SiteFooter extends React.Component {
         className="footer d-flex border-top py-3 px-4"
       >
         <div className="container-fluid d-flex">
-          <a
-            className="d-block"
-            href={config.LMS_BASE_URL}
-            aria-label={intl.formatMessage(messages['footer.logo.ariaLabel'])}
-          >
-            <img
-              style={{ maxHeight: 45 }}
-              src={logo || config.LOGO_TRADEMARK_URL}
-              alt={intl.formatMessage(messages['footer.logo.altText'])}
-            />
-          </a>
+          <img
+            style={{ maxHeight: 45 }}
+            src={logo || config.LOGO_TRADEMARK_URL}
+            alt={intl.formatMessage(messages['footer.logo.altText'])}
+          />
           <div className="flex-grow-1" />
           {showLanguageSelector && (
             <LanguageSelector
