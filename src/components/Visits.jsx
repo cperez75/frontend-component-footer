@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import axios from "axios";
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const SetVisits = () => {
   const userId = 123; // Puedes cambiarlo dinámicamente si lo necesitas
@@ -25,7 +25,7 @@ const SetVisits = () => {
   }, []); 
 
   return (
-    <div>
+    <div>&nbsp;
     </div>
   );
 };
