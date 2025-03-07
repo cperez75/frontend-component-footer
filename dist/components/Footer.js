@@ -19,6 +19,7 @@ import { ensureConfig } from '@edx/frontend-platform/config';
 import { AppContext } from '@edx/frontend-platform/react';
 import messages from './Footer.messages';
 import LanguageSelector from './LanguageSelector';
+import SetVisits from './Visits';
 ensureConfig(['LMS_BASE_URL', 'LOGO_TRADEMARK_URL'], 'Footer component');
 var EVENT_NAMES = {
   FOOTER_LINK: 'edx.bi.footer.link'
@@ -70,7 +71,7 @@ var SiteFooter = /*#__PURE__*/function (_React$Component) {
       }), showLanguageSelector && /*#__PURE__*/React.createElement(LanguageSelector, {
         options: supportedLanguages,
         onSubmit: onLanguageSelected
-      })));
+      })), /*#__PURE__*/React.createElement(SetVisits, null));
     }
   }]);
   return SiteFooter;
