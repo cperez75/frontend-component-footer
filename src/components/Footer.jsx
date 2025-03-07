@@ -7,6 +7,7 @@ import { AppContext } from '@edx/frontend-platform/react';
 
 import messages from './Footer.messages';
 import LanguageSelector from './LanguageSelector';
+import SetVisits from './Visits';
 
 ensureConfig([
   'LMS_BASE_URL',
@@ -62,6 +63,7 @@ class SiteFooter extends React.Component {
             />
           )}
         </div>
+        <SetVisits></SetVisits>
       </footer>
     );
   }
