@@ -4,9 +4,22 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 import { useEffect } from 'react';
 import axios from 'axios';
-var SetVisits = function SetVisits() {
-  var userId = 123; // Puedes cambiarlo dinámicamente si lo necesitas
+//import { useParams } from 'react-router-dom';
+import { useModel } from '@openedx/frontend-platform/react'; // Importamos useModel
 
+var SetVisits = function SetVisits() {
+  /*const userId = 11; // Puedes cambiarlo dinámicamente si lo necesitas
+  var _useParams = useParams(),
+    courseId = _useParams.courseId;*/
+
+  var _useModel = useModel('user'),
+    user = _useModel.user;
+  var userId = user === null || user === void 0 ? void 0 : user.id;
+
+  // Obtener información del curso y bloque
+  var _useModel2 = useModel('course'),
+    courseId = _useModel2.courseId,
+    unitId = _useModel2.unitId;
   useEffect(function () {
     var postData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -14,37 +27,48 @@ var SetVisits = function SetVisits() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+              caseonsole.log(userId);
+              console.log(courseId);
+              console.log(unitId);
+              if (!(!userId || !courseId || !unitId)) {
+                _context.next = 6;
+                break;
+              }
+              console.warn("Faltan datos para enviar la visita.");
+              return _context.abrupt("return");
+            case 6:
+              _context.prev = 6;
+              _context.next = 9;
               return axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/course-v1:edX+DemoX+Demo_Course/block/block-v1:edX+DemoX+Demo_Course+type@vertical+block@5c76f16fa6514043a25461c01a0cd9ee/visit", {
-                user_id: 11
+                user_id: userId
               }, {
                 headers: {
                   "Content-Type": "application/json"
                 }
               });
-            case 3:
+            case 9:
               response = _context.sent;
+              console.log("courseId: ", courseId);
               console.log("Respuesta del servidor:", response.data);
-              _context.next = 10;
+              _context.next = 17;
               break;
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context["catch"](6);
               console.error("Error al hacer el POST:", _context.t0);
-            case 10:
+            case 17:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[6, 14]]);
       }));
       return function postData() {
         return _ref.apply(this, arguments);
       };
     }();
     postData();
-  }, []);
-  return /*#__PURE__*/React.createElement("div", null, "\xA0");
+  }, [userId, courseId, unitId]);
+  return null;
 };
 export default SetVisits;
 //# sourceMappingURL=Visits.js.map
