@@ -5,7 +5,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 import { useEffect } from 'react';
 import axios from 'axios';
 //import { useParams } from 'react-router-dom';
-import { useModel } from '@openedx/frontend-platform/react'; // Importamos useModel
+import { useModel } from '@edx/frontend-platform/react'; // Importamos useModel
 
 var SetVisits = function SetVisits() {
   /*const userId = 11; // Puedes cambiarlo dinámicamente si lo necesitas
