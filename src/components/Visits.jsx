@@ -4,9 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useContext } from '@edx/frontend-platform/react'; // Importamos useModel
 
 const SetVisits = () => {
-   var _useParams = useParams(),
-   courseId = _useParams.courseId;
-   blockId = _useParams.unitId;
+  const { courseId, unitId: blockId } = useParams();
 
   const { authenticatedUser } = useContext(AppContext);
   const userId = authenticatedUser?.id;

@@ -9,8 +9,8 @@ import { useContext } from '@edx/frontend-platform/react'; // Importamos useMode
 
 var SetVisits = function SetVisits() {
   var _useParams = useParams(),
-    courseId = _useParams.courseId;
-  blockId = _useParams.unitId;
+    courseId = _useParams.courseId,
+    blockId = _useParams.unitId;
   var _useContext = useContext(AppContext),
     authenticatedUser = _useContext.authenticatedUser;
   var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.id;
