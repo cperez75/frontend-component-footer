@@ -1,26 +1,23 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-//import { useParams } from 'react-router-dom';
-import { useModel } from '@edx/frontend-platform/react'; // Importamos useModel
+import { useParams } from 'react-router-dom';
+import { useContext } from '@edx/frontend-platform/react'; // Importamos useModel
 
 const SetVisits = () => {
-  /*const userId = 11; // Puedes cambiarlo dinámicamente si lo necesitas
-  var _useParams = useParams(),
-    courseId = _useParams.courseId;*/
+   var _useParams = useParams(),
+   courseId = _useParams.courseId;
+   blockId = _useParams.unitId;
 
-  const { user } = useModel('user');
-  const userId = user?.id;
-
-  // Obtener información del curso y bloque
-  const { courseId, unitId } = useModel('course');
+  const { authenticatedUser } = useContext(AppContext);
+  const userId = authenticatedUser?.id;
 
   useEffect(() => {
     const postData = async () => {
-      caseonsole.log(userId)
+      console.log(userId)
       console.log(courseId)
-      console.log(unitId)
+      console.log(blockId)
 
-      if (!userId || !courseId || !unitId) {
+      if (!userId || !courseId || !blockId) {
         console.warn("Faltan datos para enviar la visita.");
         return;
       }
@@ -41,7 +38,7 @@ const SetVisits = () => {
     };
 
     postData(); 
-  }, [userId, courseId, unitId]); 
+  }, [userId, courseId, blockId]); 
 
   return null;
 };

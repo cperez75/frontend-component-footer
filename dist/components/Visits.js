@@ -4,22 +4,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 import { useEffect } from 'react';
 import axios from 'axios';
-//import { useParams } from 'react-router-dom';
-import { useModel } from '@edx/frontend-platform/react'; // Importamos useModel
+import { useParams } from 'react-router-dom';
+import { useContext } from '@edx/frontend-platform/react'; // Importamos useModel
 
 var SetVisits = function SetVisits() {
-  /*const userId = 11; // Puedes cambiarlo dinámicamente si lo necesitas
   var _useParams = useParams(),
-    courseId = _useParams.courseId;*/
-
-  var _useModel = useModel('user'),
-    user = _useModel.user;
-  var userId = user === null || user === void 0 ? void 0 : user.id;
-
-  // Obtener información del curso y bloque
-  var _useModel2 = useModel('course'),
-    courseId = _useModel2.courseId,
-    unitId = _useModel2.unitId;
+    courseId = _useParams.courseId;
+  blockId = _useParams.unitId;
+  var _useContext = useContext(AppContext),
+    authenticatedUser = _useContext.authenticatedUser;
+  var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.id;
   useEffect(function () {
     var postData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -27,10 +21,10 @@ var SetVisits = function SetVisits() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              caseonsole.log(userId);
+              console.log(userId);
               console.log(courseId);
-              console.log(unitId);
-              if (!(!userId || !courseId || !unitId)) {
+              console.log(blockId);
+              if (!(!userId || !courseId || !blockId)) {
                 _context.next = 6;
                 break;
               }
@@ -67,7 +61,7 @@ var SetVisits = function SetVisits() {
       };
     }();
     postData();
-  }, [userId, courseId, unitId]);
+  }, [userId, courseId, blockId]);
   return null;
 };
 export default SetVisits;
