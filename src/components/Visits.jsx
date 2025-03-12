@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useContext } from '@edx/frontend-platform/react'; // Importamos useModel
+import { useContext, AppContext } from '@edx/frontend-platform/react';
 
 const SetVisits = () => {
   const { courseId, unitId: blockId } = useParams();
+
+  console.log(courseId)
+  console.log(blockId)
 
   const { authenticatedUser } = useContext(AppContext);
   const userId = authenticatedUser?.id;
@@ -12,8 +15,7 @@ const SetVisits = () => {
   useEffect(() => {
     const postData = async () => {
       console.log(userId)
-      console.log(courseId)
-      console.log(blockId)
+      
 
       if (!userId || !courseId || !blockId) {
         console.warn("Faltan datos para enviar la visita.");

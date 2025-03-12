@@ -5,12 +5,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useContext } from '@edx/frontend-platform/react'; // Importamos useModel
-
+import { useContext, AppContext } from '@edx/frontend-platform/react';
 var SetVisits = function SetVisits() {
   var _useParams = useParams(),
     courseId = _useParams.courseId,
     blockId = _useParams.unitId;
+  console.log(courseId);
+  console.log(blockId);
   var _useContext = useContext(AppContext),
     authenticatedUser = _useContext.authenticatedUser;
   var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.id;
@@ -22,17 +23,15 @@ var SetVisits = function SetVisits() {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               console.log(userId);
-              console.log(courseId);
-              console.log(blockId);
               if (!(!userId || !courseId || !blockId)) {
-                _context.next = 6;
+                _context.next = 4;
                 break;
               }
               console.warn("Faltan datos para enviar la visita.");
               return _context.abrupt("return");
-            case 6:
-              _context.prev = 6;
-              _context.next = 9;
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
               return axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/course-v1:edX+DemoX+Demo_Course/block/block-v1:edX+DemoX+Demo_Course+type@vertical+block@5c76f16fa6514043a25461c01a0cd9ee/visit", {
                 user_id: userId
               }, {
@@ -40,21 +39,21 @@ var SetVisits = function SetVisits() {
                   "Content-Type": "application/json"
                 }
               });
-            case 9:
+            case 7:
               response = _context.sent;
               console.log("courseId: ", courseId);
               console.log("Respuesta del servidor:", response.data);
-              _context.next = 17;
+              _context.next = 15;
               break;
-            case 14:
-              _context.prev = 14;
-              _context.t0 = _context["catch"](6);
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context["catch"](4);
               console.error("Error al hacer el POST:", _context.t0);
-            case 17:
+            case 15:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[6, 14]]);
+        }, _callee, null, [[4, 12]]);
       }));
       return function postData() {
         return _ref.apply(this, arguments);
