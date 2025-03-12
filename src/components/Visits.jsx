@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useContext, AppContext } from '@edx/frontend-platform/react';
+import { AppContext } from '@edx/frontend-platform/react';
 
 const SetVisits = () => {
   const { courseId, unitId: blockId } = useParams();
