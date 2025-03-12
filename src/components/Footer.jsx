@@ -12,6 +12,7 @@ import SetVisits from './Visits';
 ensureConfig([
   'LMS_BASE_URL',
   'LOGO_TRADEMARK_URL',
+  'OSAPI_URL'
 ], 'Footer component');
 
 const EVENT_NAMES = {

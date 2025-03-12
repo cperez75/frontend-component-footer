@@ -10,11 +10,8 @@ var SetVisits = function SetVisits() {
   var _useParams = useParams(),
     courseId = _useParams.courseId,
     blockId = _useParams.unitId;
-  console.log(courseId);
-  console.log(blockId);
   var _useContext = useContext(AppContext),
     authenticatedUser = _useContext.authenticatedUser;
-  console.log(authenticatedUser);
   var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.userId;
   useEffect(function () {
     var postData = /*#__PURE__*/function () {
@@ -23,38 +20,36 @@ var SetVisits = function SetVisits() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              console.log(userId);
               if (!(!userId || !courseId || !blockId)) {
-                _context.next = 4;
+                _context.next = 3;
                 break;
               }
               console.warn("Faltan datos para enviar la visita.");
               return _context.abrupt("return");
-            case 4:
-              _context.prev = 4;
-              _context.next = 7;
-              return axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/{courseId}/block/{blockId}/visit", {
+            case 3:
+              _context.prev = 3;
+              _context.next = 6;
+              return axios.post('${config.OSAPI_URL}/v1/courses/course/${courseId}/block/${blockId}/visit', {
                 user_id: userId
               }, {
                 headers: {
                   "Content-Type": "application/json"
                 }
               });
-            case 7:
+            case 6:
               response = _context.sent;
-              console.log("courseId: ", courseId);
               console.log("Respuesta del servidor:", response.data);
-              _context.next = 15;
+              _context.next = 13;
               break;
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](4);
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](3);
               console.error("Error al hacer el POST:", _context.t0);
-            case 15:
+            case 13:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[4, 12]]);
+        }, _callee, null, [[3, 10]]);
       }));
       return function postData() {
         return _ref.apply(this, arguments);
