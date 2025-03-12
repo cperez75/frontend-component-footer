@@ -14,7 +14,8 @@ var SetVisits = function SetVisits() {
   console.log(blockId);
   var _useContext = useContext(AppContext),
     authenticatedUser = _useContext.authenticatedUser;
-  var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.id;
+  console.log(authenticatedUser);
+  var userId = authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.userId;
   useEffect(function () {
     var postData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -32,7 +33,7 @@ var SetVisits = function SetVisits() {
             case 4:
               _context.prev = 4;
               _context.next = 7;
-              return axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/course-v1:edX+DemoX+Demo_Course/block/block-v1:edX+DemoX+Demo_Course+type@vertical+block@5c76f16fa6514043a25461c01a0cd9ee/visit", {
+              return axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/{courseId}/block/{blockId}/visit", {
                 user_id: userId
               }, {
                 headers: {

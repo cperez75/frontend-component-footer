@@ -10,7 +10,9 @@ const SetVisits = () => {
   console.log(blockId)
 
   const { authenticatedUser } = useContext(AppContext);
-  const userId = authenticatedUser?.id;
+  console.log(authenticatedUser)
+  
+  const userId = authenticatedUser?.userId;
 
   useEffect(() => {
     const postData = async () => {
@@ -23,7 +25,7 @@ const SetVisits = () => {
       }
 
       try {
-        const response = await axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/course-v1:edX+DemoX+Demo_Course/block/block-v1:edX+DemoX+Demo_Course+type@vertical+block@5c76f16fa6514043a25461c01a0cd9ee/visit", {
+        const response = await axios.post("https://courses.mvp.omt.ie.graspway.com/os-api/v1/courses/course/{courseId}/block/{blockId}/visit", {
           user_id: userId,
         }, {
           headers: {
