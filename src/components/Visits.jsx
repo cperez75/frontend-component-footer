@@ -16,10 +16,11 @@ const SetVisits = () => {
         console.warn("Faltan datos para enviar la visita.");
         return;
       }
-      console.log(getConfig().API_GW_URL)
+
+      const url = getConfig().OSAPI_URL
 
       try {
-        const response = await axios.post(`https://courses.omt.ie.graspway.com/os-api/v1/courses/course/${courseId}/block/${blockId}/visit`, {
+        const response = await axios.post(`${url}/v1/courses/course/${courseId}/block/${blockId}/visit`, {
           user_id: userId,
         }, {
           headers: {

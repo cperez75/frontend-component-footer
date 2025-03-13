@@ -17,7 +17,7 @@ var SetVisits = function SetVisits() {
   useEffect(function () {
     var postData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response;
+        var url, response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -28,10 +28,10 @@ var SetVisits = function SetVisits() {
               console.warn("Faltan datos para enviar la visita.");
               return _context.abrupt("return");
             case 3:
-              console.log(getConfig().API_GW_URL);
+              url = getConfig().OSAPI_URL;
               _context.prev = 4;
               _context.next = 7;
-              return axios.post("https://courses.omt.ie.graspway.com/os-api/v1/courses/course/".concat(courseId, "/block/").concat(blockId, "/visit"), {
+              return axios.post("".concat(url, "/v1/courses/course/").concat(courseId, "/block/").concat(blockId, "/visit"), {
                 user_id: userId
               }, {
                 headers: {
