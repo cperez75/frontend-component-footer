@@ -27,29 +27,30 @@ var SetVisits = function SetVisits() {
               console.warn("Faltan datos para enviar la visita.");
               return _context.abrupt("return");
             case 3:
-              _context.prev = 3;
-              _context.next = 6;
-              return axios.post('${config.OSAPI_URL}/v1/courses/course/${courseId}/block/${blockId}/visit', {
+              console.log(config.OSAPI_URL);
+              _context.prev = 4;
+              _context.next = 7;
+              return axios.post("https://courses.omt.ie.graspway.com/os-api/v1/courses/course/".concat(courseId, "/block/").concat(blockId, "/visit"), {
                 user_id: userId
               }, {
                 headers: {
                   "Content-Type": "application/json"
                 }
               });
-            case 6:
+            case 7:
               response = _context.sent;
               console.log("Respuesta del servidor:", response.data);
-              _context.next = 13;
+              _context.next = 14;
               break;
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](3);
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](4);
               console.error("Error al hacer el POST:", _context.t0);
-            case 13:
+            case 14:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[3, 10]]);
+        }, _callee, null, [[4, 11]]);
       }));
       return function postData() {
         return _ref.apply(this, arguments);
