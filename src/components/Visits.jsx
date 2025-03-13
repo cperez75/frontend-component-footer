@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '@edx/frontend-platform/react';
+import { getConfig } from '@edx/frontend-platform';
 
 const SetVisits = () => {
   const { courseId, unitId: blockId } = useParams();
@@ -15,7 +16,7 @@ const SetVisits = () => {
         console.warn("Faltan datos para enviar la visita.");
         return;
       }
-      console.log(config.OSAPI_URL)
+      console.log(getConfig().API_GW_URL)
 
       try {
         const response = await axios.post(`https://courses.omt.ie.graspway.com/os-api/v1/courses/course/${courseId}/block/${blockId}/visit`, {

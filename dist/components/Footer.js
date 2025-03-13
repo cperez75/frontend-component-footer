@@ -20,7 +20,7 @@ import { AppContext } from '@edx/frontend-platform/react';
 import messages from './Footer.messages';
 import LanguageSelector from './LanguageSelector';
 import SetVisits from './Visits';
-ensureConfig(['LMS_BASE_URL', 'LOGO_TRADEMARK_URL', 'OSAPI_URL'], 'Footer component');
+ensureConfig(['LMS_BASE_URL', 'LOGO_TRADEMARK_URL'], 'Footer component');
 var EVENT_NAMES = {
   FOOTER_LINK: 'edx.bi.footer.link'
 };
