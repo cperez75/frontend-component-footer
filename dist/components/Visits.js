@@ -28,7 +28,7 @@ var SetVisits = function SetVisits() {
               console.warn("Faltan datos para enviar la visita.");
               return _context.abrupt("return");
             case 3:
-              url = getConfig().OSAPI_URL;
+              url = getConfig().API_GW_URL;
               _context.prev = 4;
               _context.next = 7;
               return axios.post("".concat(url, "/v1/courses/course/").concat(courseId, "/block/").concat(blockId, "/visit"), {

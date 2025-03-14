@@ -17,7 +17,7 @@ const SetVisits = () => {
         return;
       }
 
-      const url = getConfig().OSAPI_URL
+      const url = getConfig().API_GW_URL
 
       try {
         const response = await axios.post(`${url}/v1/courses/course/${courseId}/block/${blockId}/visit`, {
